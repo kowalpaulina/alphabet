@@ -12,6 +12,7 @@ sendMessage(message: string) {
 }
 
 getMessage(): Observable<string> {
+  console.log(this.subjectMessage.asObservable());
   return this.subjectMessage.asObservable();
 }
 

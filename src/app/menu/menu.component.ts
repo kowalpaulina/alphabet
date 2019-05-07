@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { InputMessageService } from '../services/input-message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnDestroy {
   items = [
     {
       name: 'A',
@@ -17,9 +19,20 @@ export class MenuComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  message: string;
+  messageToDisplay: Subscription;
 
-  ngOnInit() {
+
+  constructor(private readonly inputMessageService: InputMessageService) {
+    this.messageToDisplay = this.inputMessageService.getMessage().subscribe(message => {
+      this.message = message;
+    });
+   }
+
+  ngOnDestroy() {
+    if (this.messageToDisplay) {
+      this.messageToDisplay.unsubscribe();
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 
-<form (ngSubmit)="onSubmit(inputForm.value)" #inputForm="ngForm">
+<form (ngSubmit)="onSubmit(inputForm)" #inputForm="ngForm">
   <mat-form-field class="example-full-width">
     <input
       matInput
@@ -8,7 +8,7 @@
       id="inputMessage"
       required
       name="inputMessage"
-      ngModel>
+      [ngModel]="inputMessage">
   </mat-form-field>
 
   <button type="submit" mat-button [disabled]="!inputForm.form.valid" color="primary">OK</button>
