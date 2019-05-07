@@ -1,0 +1,15 @@
+
+<form (ngSubmit)="onSubmit(inputForm.value)" #inputForm="ngForm">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      type="text"
+      class="form-control"
+      id="inputMessage"
+      required
+      name="inputMessage"
+      ngModel>
+  </mat-form-field>
+
+  <button type="submit" mat-button [disabled]="!inputForm.form.valid" color="primary">OK</button>
+</form>
